@@ -7,6 +7,9 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Register = () => {
 
     const { createUser } = useAuth()
@@ -26,6 +29,18 @@ const Register = () => {
         const password = data.password
 
         console.log(name, email, photoURL, password)
+
+        // 
+
+        if(password.length < 6 ){
+            return toast.warn("Password must be at least 6 characters")
+        }
+        else if(!/[A-Z]/.test(password)){
+            return toast.warn(" Please provide at least one capital letter in the password field ")
+        }
+        else if(!/[^\w\s]/.test(password)){
+            return toast.warn("Please provide at least one special character in the password field")
+        }
 
         // createUser
 
@@ -89,7 +104,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary">Register</button>
                         </div>
 
                         <div className='text-center mt-4 space-y-2'>
@@ -97,7 +112,17 @@ const Register = () => {
                             <p className='text-gray-600 font-medium '> Please <span className='text-xl text-blue-500 text-bold ml-2 underline'> <Link to={'/login'}> Login </Link> </span> </p>
                         </div>
                     </form>
+
+                   
                 </div>
+
+                <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                >
+
+                </ToastContainer>
+
             </div>
         </div>
     );
