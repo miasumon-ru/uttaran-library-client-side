@@ -1,9 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
 
-    const {user, logOut} = useAuth()
+    const { user, logOut } = useAuth()
 
     const navLinks = <>
 
@@ -20,11 +21,11 @@ const Navbar = () => {
     const handleLogOut = () => {
 
         logOut()
-        .then(()=> {
-            console.log("logout is successful")
-        })
+            .then(() => {
+                console.log("logout is successful")
+            })
 
-        
+
 
     }
 
@@ -61,11 +62,28 @@ const Navbar = () => {
             <div className="navbar-end">
 
                 {
-                    user ? <button onClick={handleLogOut} className="btn"> LogOut </button> :<Link to={'/login'}> <button className="btn"> Login </button> </Link>
+                    user ?
+
+                        <div className="flex flex-row items-center justify-center gap-2">
+
+                            <a data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName}>
+                                <img src={user.photoURL} className="w-12 h-12 rounded-full " alt="" />
+                            </a>
+
+
+
+                            <button onClick={handleLogOut} className="btn"> LogOut </button>
+                        </div>
+
+
+
+                        : <Link to={'/login'}> <button className="btn"> Login </button> </Link>
                 }
 
+                <Tooltip id="my-tooltip" />
 
-             
+
+
             </div>
         </div>
     );

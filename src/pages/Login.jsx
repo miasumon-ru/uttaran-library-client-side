@@ -3,10 +3,11 @@ import signInPhoto from '../assets/securityPhoto.jpg'
 import { useForm } from "react-hook-form"
 import useAuth from '../hooks/useAuth';
 
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
 
-    const {login} = useAuth()
+    const {login, googleLogin} = useAuth()
 
     const {
         register,
@@ -15,7 +16,7 @@ const Login = () => {
 
     //   handleLogin
 
-    const handleLogin = (data) => {
+    const handleLogin = (data, e) => {
 
         const email = data.email
         const password = data.password
@@ -32,9 +33,27 @@ const Login = () => {
             console.log(error.message)
         })
 
+        // reset the form
+        e.target.reset()
+
 
 
     }
+
+    // handle Google Login
+
+    const handleGoogleLogin = () => {
+
+        googleLogin()
+        .then(result=> {
+            console.log(result.user)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+    }
+
+
 
     return (
         <div className="">
@@ -64,6 +83,10 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
+                        </div>
+
+                        <div className='my-4'>
+                            <p onClick={handleGoogleLogin} className='btn w-full font-medium'> <FcGoogle className='text-2xl' /> Login with Google </p>
                         </div>
 
                         <div className='text-center mt-4 space-y-2'>

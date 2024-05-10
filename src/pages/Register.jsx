@@ -18,7 +18,7 @@ const Register = () => {
         handleSubmit,
     } = useForm()
 
-    const handleRegister = (data) => {
+    const handleRegister = (data, e) => {
 
         const name = data.name
         const email = data.email
@@ -36,6 +36,10 @@ const Register = () => {
         .catch(error => {
             console.log(error.message)
         })
+
+        // reset the form
+
+        e.target.reset()
 
     }
 
