@@ -34,7 +34,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="Email" {...register("email")} placeholder="email" className="input input-bordered" required />
+                            <input type="Email" {...register("email")} placeholder="Email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

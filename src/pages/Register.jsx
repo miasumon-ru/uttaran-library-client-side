@@ -1,8 +1,14 @@
 import { useForm } from "react-hook-form"
 import signUpPhoto from "../assets/signUpPhoto.jpg"
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
+
+    const [showPassword, setShowPassword] = useState(false)
 
     const {
         register,
@@ -15,10 +21,14 @@ const Register = () => {
 
     }
 
+    // handle showPassword
+
+    console.log(showPassword)
+
     return (
         <div className="">
         <div className="hero-content flex-col lg:flex-row md:mt-10">
-            <div className="text-center lg:text-left w-full flex items-center justify-center">
+            <div className="text-center lg:text-left w-full flex  items-center justify-center">
 
                 <img className=' ' src={signUpPhoto} alt="" />
 
@@ -47,11 +57,13 @@ const Register = () => {
                         <input type="text" {...register("photoURL")} placeholder="Photo URL" className="input input-bordered" required />
                     </div>
 
-                    <div className="form-control">
+                    <div className="form-control relative">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" {...register("password")} placeholder="Password" className="input input-bordered" required />
+                        <input type={showPassword ? 'text' : 'password'} {...register("password")} placeholder="Password" className="input input-bordered" required />
+                        
+                        <span onClick={()=> setShowPassword(!showPassword)} className="absolute right-3 top-12 "> {showPassword ? <FaEyeSlash className="text-2xl" />  : <FaEye className="text-2xl" />   }  </span>
 
 
                     </div>
