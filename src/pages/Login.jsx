@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import signInPhoto from '../assets/securityPhoto.jpg'
 import { useForm } from "react-hook-form"
+import useAuth from '../hooks/useAuth';
 
 
 const Login = () => {
+
+    const {login} = useAuth()
 
     const {
         register,
@@ -14,7 +17,22 @@ const Login = () => {
 
     const handleLogin = (data) => {
 
-        console.log(data)
+        const email = data.email
+        const password = data.password
+
+        console.log({email, password})
+
+        // login
+
+        login(email, password)
+        .then(result => {
+            console.log(result.user)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+
+
 
     }
 
