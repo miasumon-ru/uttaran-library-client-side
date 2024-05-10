@@ -4,6 +4,10 @@ import MainLayout from "../layout/MainLayout";
 
 import Home from "../pages/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AllBooks from "../pages/AllBooks";
+import BorrowedBooks from "../pages/BorrowedBooks";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
     {
@@ -15,6 +19,26 @@ const router = createBrowserRouter([
         {
           path: "/",
           element: <Home></Home>,
+        },
+        {
+          path: "/addBook",
+          element: <Home></Home>,
+        },
+        {
+          path: "/allBooks",
+          element: <AllBooks></AllBooks>,
+        },
+        {
+          path: "/borrowedBooks",
+          element: <BorrowedBooks></BorrowedBooks>,
+        },
+        {
+          path: "/login",
+          element: <Login></Login>,
+        },
+        {
+          path: "/register",
+          element: <Register></Register>,
         },
 
 
