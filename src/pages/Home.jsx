@@ -1,5 +1,6 @@
 import About from "../component/About";
 import Category from "../component/Category";
+import HowWorks from "../component/HowWorks";
 import Slider from "../component/Slider/Slider";
 
 
@@ -13,6 +14,8 @@ const Home = () => {
             <Category></Category>
 
             <About></About>
+
+            <HowWorks> </HowWorks>
            
         </div>
     );
