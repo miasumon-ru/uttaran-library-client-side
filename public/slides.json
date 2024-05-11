@@ -1,0 +1,19 @@
+
+[
+    {
+        "img": "https://i.postimg.cc/Hx2dhWY6/Pride-and-Prejudice.jpg",
+        "category": "Travel"
+    },
+    {
+        "img": "https://i.postimg.cc/zDyqjNmF/To-Kill-a-Mockingbird.jpg",
+        "category": "Fiction"
+    },
+    {
+        "img": "https://i.postimg.cc/VLM1xFkS/The-Lord-of-the-Rings.jpg",
+        "category": "Lifestyle & Hobbies"
+    },
+    {
+        "img": "https://i.postimg.cc/XYkWJ7F4/The-Catcher-in-the-Rye.jpg",
+        "category": "Business & Finance"
+    }
+]
