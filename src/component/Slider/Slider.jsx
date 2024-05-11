@@ -11,8 +11,8 @@ import './Slider.css'
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 
 
@@ -20,16 +20,29 @@ import axios from 'axios';
 
 
 const Slider = () => {
-    const [sliders, setSliders] = useState([])
 
-    useEffect(() => {
-        axios.get('slides.json')
-            .then(res => {
+    const {data : sliders = [], isLoading} = useQuery({
+        queryFn : () => getSliders(),
+        queryKey : ['slider']
+    })
 
-                setSliders(res.data)
-            })
 
-    }, [])
+
+     const getSliders = async() => {
+        const data = await axios.get('slides.json')
+
+        return data.data
+     }
+      
+
+     if(isLoading) {
+        return <div className="text-center flex flex-col justify-center items-center min-h-screen">
+           <span className="loading loading-spinner loading-lg"></span>
+             
+             </div>
+    }
+
+
 
     console.log(sliders)
 
@@ -40,7 +53,7 @@ const Slider = () => {
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
-                    delay: 2500,
+                    delay: 5500,
                     disableOnInteraction: false,
                 }}
                 pagination={{

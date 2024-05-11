@@ -8,6 +8,7 @@ import AllBooks from "../pages/AllBooks";
 import BorrowedBooks from "../pages/BorrowedBooks";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AddBook from "../pages/AddBook";
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/addBook",
-          element: <Home></Home>,
+          element: <AddBook></AddBook> ,
         },
         {
           path: "/allBooks",

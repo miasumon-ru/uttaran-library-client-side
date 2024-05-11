@@ -1,3 +1,4 @@
+import About from "../component/About";
 import Category from "../component/Category";
 import Slider from "../component/Slider/Slider";
 
@@ -10,6 +11,8 @@ const Home = () => {
             <Slider></Slider>
 
             <Category></Category>
+
+            <About></About>
            
         </div>
     );

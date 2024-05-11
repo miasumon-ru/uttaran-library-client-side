@@ -46,7 +46,7 @@ const Category = () => {
 
 
     return (
-        <div>
+        <div className="my-20">
 
             <div className=" max-w-2xl mx-auto my-10">
                 <h1 className=" text-3xl text-center md:text-5xl font-bold"> Choose Category </h1>

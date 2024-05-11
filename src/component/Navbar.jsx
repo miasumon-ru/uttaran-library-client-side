@@ -2,6 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 
+import logo from "../assets/Uttaran.png"
+
 const Navbar = () => {
 
     const { user, logOut } = useAuth()
@@ -46,7 +48,7 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"> Uttaran Library </a>
+                <a className=" hover:bg-transparent font-bold flex flex-row gap-2 items-center"> <img src={logo} className="w-1/4" alt="" /> Uttaran Library </a>
                 {/* <img src={logo1} className="h-50 w-50" alt="" /> */}
             </div>
             <div className="navbar-center hidden lg:flex">
