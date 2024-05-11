@@ -1,3 +1,4 @@
+import Category from "../component/Category";
 
 
 
@@ -5,8 +6,8 @@ const Home = () => {
     return (
         <div>
 
-            <h1> this is home page </h1>
-            
+            <Category></Category>
+           
         </div>
     );
 };

@@ -5,6 +5,9 @@ import useAuth from '../hooks/useAuth';
 
 import { FcGoogle } from "react-icons/fc";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
 
     const {login, googleLogin} = useAuth()
@@ -23,6 +26,10 @@ const Login = () => {
 
         console.log({email, password})
 
+
+        // verify password
+        
+
         // login
 
         login(email, password)
@@ -31,6 +38,9 @@ const Login = () => {
         })
         .catch(error => {
             console.log(error.message)
+            if(error.message){
+                toast.warn("Please provide correct email and password")
+            }
         })
 
         // reset the form
@@ -47,6 +57,8 @@ const Login = () => {
         googleLogin()
         .then(result=> {
             console.log(result.user)
+
+            toast.success("Login is successful")
         })
         .catch(error => {
             console.log(error.message)
@@ -94,6 +106,12 @@ const Login = () => {
                             <p className='text-gray-600 font-medium '> Please <span className='text-xl text-blue-500 text-bold ml-2 underline'> <Link to={'/register'}> Register </Link> </span> </p>
                         </div>
                     </form>
+
+                    <ToastContainer
+
+                    position='top-center'
+                    ></ToastContainer>
+
                 </div>
             </div>
         </div>

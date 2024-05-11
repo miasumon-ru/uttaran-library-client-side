@@ -1,0 +1,19 @@
+
+[
+    {
+        "img": "https://i.postimg.cc/Vk2mbbTQ/category-travel-img-2.jpg",
+        "category": "Travel"
+    },
+    {
+        "img": "https://i.postimg.cc/Dy591bSp/category-fiction-img.jpg",
+        "category": "Fiction"
+    },
+    {
+        "img": "https://i.postimg.cc/TY7RfsJP/catergory-lifestyle-and-hobbies-img-2.jpg",
+        "category": "Lifestyle & Hobbies"
+    },
+    {
+        "img": "https://i.postimg.cc/pLTgCX8W/category-business-and-finance.jpg",
+        "category": "Business & Finance"
+    }
+]
