@@ -1,0 +1,117 @@
+
+ [
+      {
+        "bookName": "Pride and Prejudice",
+        "authorName": "Jane Austen",
+        "category": "Fiction",
+        "ratings": 4.5,
+        "image": "https://i.postimg.cc/SRb0cXcj/Pride-and-Prejudice.jpg"
+      },
+      {
+        "bookName": "To Kill a Mockingbird",
+        "authorName": " Harper Lee",
+        "category": "Fiction",
+        "ratings": 4.8,
+        "image": "https://i.postimg.cc/SNr0zxRN/To-Kill-a-Mockingbird.jpg"
+      },
+      {
+        "bookName": "The Lord of the Rings",
+        "authorName": "John Ronald",
+        "category": "Fiction",
+        "ratings": 4.2,
+        "image": "https://i.postimg.cc/XY7RK6BK/The-Lord-of-the-Rings.jpg"
+      },
+      {
+        "bookName": "The Catcher in the Rye",
+        "authorName": "J. D. Salinger",
+        "category": "Fiction",
+        "ratings": 4.6,
+        "image": "https://i.postimg.cc/Dw9cvqhW/The-Catcher-in-the-Rye.jpg"
+      },
+      {
+        "bookName": "Rich Dad Poor Dad",
+        "authorName": "Robert Kiyosaki",
+        "category": "Business and Finance" ,
+        "ratings": 4.7,
+        "image": "https://i.postimg.cc/wvLxKYVy/rich-dad.jpg"
+      },
+      {
+        "bookName": "The Intelligent Investor",
+        "authorName": "Benjamin Graham",
+        "category": "Business and Finance",
+        "ratings": 4.9,
+        "image": "https://i.postimg.cc/c171XZCP/the-intelligent-investor.jpg"
+      },
+      {
+        "bookName": "The Lean Startup",
+        "authorName": "Eric Ries",
+        "category": "Business and Finance",
+        "ratings": 4.8,
+        "image": "https://i.postimg.cc/Z5QJC5sv/the-lean-startup.jpg"
+      },
+      {
+        "bookName": "The 4-Hour Workweek",
+        "authorName": "Tim Ferriss",
+        "category": "Business and Finance",
+        "ratings": 4.9,
+        "image": "https://i.postimg.cc/D07TtJ0H/four-hour.jpg"
+      },
+      {
+        "bookName": "The Secret",
+        "authorName": "Rhonda Byrne",
+        "category": "Life Style and Hobbies",
+        "ratings": 4.3,
+        "image": "https://i.postimg.cc/Zq6X4bGS/secret.jpg"
+      },
+      {
+        "bookName": "Big Magic",
+        "authorName": "Elizabeth Gilbert",
+        "category": "Life Style and Hobbies",
+        "ratings": 4.7,
+        "image": "https://i.postimg.cc/cJDksvFP/big-magic.jpg"
+      },
+      {
+        "bookName": "Born to Run",
+        "authorName": "Christopher McDougall",
+        "category": "Life Style and Hobbies",
+        "ratings": 4.5,
+        "image": "https://i.postimg.cc/T1btqCTX/born-to-run.jpg"
+      },
+      {
+        "bookName": "The Little Book of Hygge",
+        "authorName": "Meik Wiking",
+        "category": "Life Style and Hobbies",
+        "ratings": 4.8,
+        "image": "https://i.postimg.cc/6QQz19Bc/the-little-book.jpg"
+      },
+      {
+        "bookName": "The Alchemist",
+        "authorName": "Paulo Coelho",
+        "category": "Travel",
+        "ratings": 4.1,
+        "image": "https://i.postimg.cc/W1pgnXnc/alchemist.jpg"
+      },
+      {
+        "bookName": "A Year in Provence",
+        "authorName": "Peter Mayle",
+        "category": "Travel",
+        "ratings": 4.4,
+        "image": "https://i.postimg.cc/0NFS9xq9/a-year-in-provence.jpg"
+      },
+      {
+        "bookName": "Into the Wild",
+        "authorName": "Jon Krakauer",
+        "category": "Travel",
+        "ratings": 4.6,
+        "image": "https://i.postimg.cc/bwvSbdyz/into-the-wild-book-cover.jpg"
+      },
+      {
+        "bookName": "In Patagonia",
+        "authorName": "Bruce Chatwin",
+        "category": "Travel",
+        "ratings": 4.3,
+        "image": "https://i.postimg.cc/pdwmgZDT/in-patagonia.jpg"
+      }
+
+]
+ 
