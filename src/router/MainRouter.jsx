@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddBook from "../pages/AddBook";
 import PrivateRoutes from "./PrivateRoutes";
+import Update from "../pages/Update";
 
 const router = createBrowserRouter([
   {
@@ -34,12 +35,20 @@ const router = createBrowserRouter([
           <AllBooks></AllBooks>
         </PrivateRoutes>,
       },
+
       {
         path: "/borrowedBooks",
         element: <PrivateRoutes>
           <BorrowedBooks></BorrowedBooks>
         </PrivateRoutes>,
       },
+      {
+        path: "/update/:id",
+        element: <PrivateRoutes>
+          <Update></Update>
+        </PrivateRoutes>,
+      },
+
       {
         path: "/login",
         element: <Login></Login>,

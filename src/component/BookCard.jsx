@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 const BookCard = ({ book }) => {
 
-    const { image, authorName, bookName, category, ratings } = book
-
-    console.log(authorName, bookName)
+    const { image, authorName, bookName, category, ratings, _id } = book
 
 
     return (
@@ -26,7 +25,9 @@ const BookCard = ({ book }) => {
 
 
                 <div className="card-actions">
-                    <button className="btn w-full btn-primary ">Update</button>
+
+                    <Link to={`/update/${_id}`}  className="btn w-full btn-primary"> Update </Link>
+                    
                 </div>
 
             </div>
