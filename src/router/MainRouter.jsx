@@ -12,6 +12,7 @@ import AddBook from "../pages/AddBook";
 import PrivateRoutes from "./PrivateRoutes";
 import Update from "../pages/Update";
 import SpecificCategories from "../pages/SpecificCategories";
+import Details from "../pages/Details";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,13 @@ const router = createBrowserRouter([
           <Update></Update>
         </PrivateRoutes>,
       },
+      {
+        path: "/details/:id",
+        element: <PrivateRoutes>
+          <Details></Details>
+        </PrivateRoutes>,
+      },
+
       {
         path: "/specificCategories/:category",
         element: <SpecificCategories></SpecificCategories>

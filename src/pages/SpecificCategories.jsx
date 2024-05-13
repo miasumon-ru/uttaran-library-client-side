@@ -5,11 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 
-
 const SpecificCategories = () => {
 
 
-    const {category} = useParams()
+    const { category } = useParams()
 
     console.log(category)
 
@@ -20,7 +19,7 @@ const SpecificCategories = () => {
 
     console.log(categories)
 
-    const getSpecificCategories= async () => {
+    const getSpecificCategories = async () => {
         const data = await axios.get(`http://localhost:5000/specificCategories/${category}`)
         return data.data
     }
@@ -37,36 +36,36 @@ const SpecificCategories = () => {
 
 
             {
-                categories.map((category,index) => <div key={index} className="card bg-base-100 shadow-sm border p-4">
-                <figure><img src={category.image} alt="Shoes" /></figure>
-                <div className="card-body space-y-4">
-    
-                    <h2 className="card-title text-3xl"> {category.bookName} </h2>
-    
-                    <p className='text-xl font-medium'> Author :  {category.authorName} </p>
-    
-                    <div className='flex flex-row justify-between'>
-                        <p className='text-[16px]'> Category : <span className=" p-2 rounded-2xl font-bold text-xl"> {category.category} </span> </p>
-    
-                        <p className='text-[16px]'> Ratings : {category.ratings} </p>
+                categories.map((category, index) => <div key={index} className="card bg-base-100 shadow-sm border p-4">
+                    <figure><img src={category.image} alt="Shoes" /></figure>
+                    <div className="card-body space-y-4">
+
+                        <h2 className="card-title text-3xl"> {category.bookName} </h2>
+
+                        <p className='text-xl font-medium'> Author :  {category.authorName} </p>
+
+                        <div className='flex flex-row justify-between'>
+                            <p className='text-[16px]'> Category : <span className=" p-2 rounded-2xl font-bold text-xl"> {category.category} </span> </p>
+
+                            <p className='text-[16px]'> Ratings : {category.ratings} </p>
+                        </div>
+
+
+
+                        <div className="card-actions">
+
+                            <Link to={`/details/${category._id}`} className="btn w-full btn-primary"> Details </Link>
+
+                        </div>
+
                     </div>
-    
-    
- 
-                    <div className="card-actions">
-    
-                        <Link to={`/update/${category.category}`}  className="btn w-full btn-primary"> Details </Link>
-                        
-                    </div> 
-    
-                </div>
-            </div>)
+                </div>)
             }
 
 
 
-         
-            
+
+
         </div>
     );
 };

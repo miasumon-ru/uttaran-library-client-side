@@ -17,7 +17,7 @@ const AddBook = () => {
 
     const handleAddBook = (data) => {
 
-        const imageURL = data.imageURL
+        const image = data.imageURL
         const bookName = data.bookName
         const authorName = data.authorName
         const category = data.category
@@ -27,7 +27,7 @@ const AddBook = () => {
 
 
         const newBook = {
-            imageURL,
+            image,
             bookName,
             authorName,
             category,
