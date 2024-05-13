@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 
@@ -22,9 +23,9 @@ const Category = () => {
 
     // console.log(categories)
 
-    const {data : categories = [] , isLoading } =  useQuery({
-        queryFn :  () => getData(),
-        queryKey : ["sumon"]
+    const { data: categories = [], isLoading } = useQuery({
+        queryFn: () => getData(),
+        queryKey: ["categoryData"]
     })
 
     console.log(categories)
@@ -34,14 +35,14 @@ const Category = () => {
         return data.data
     }
 
-    if(isLoading) {
+    if (isLoading) {
         return <div className="text-center flex flex-col justify-center items-center min-h-screen">
-           <span className="loading loading-spinner loading-lg"></span>
-             
-             </div>
+            <span className="loading loading-spinner loading-lg"></span>
+
+        </div>
     }
 
-   
+
 
 
     return (
@@ -51,21 +52,26 @@ const Category = () => {
                 <h1 className=" text-3xl text-center md:text-5xl font-bold"> Choose Category </h1>
                 <p className=" my-5 font-semibold text-center">
                     Explore Travel, Fiction, Lifestyle, and Finance ! Diverse reads for every interest, from adventures abroad to personal growth and financial savings.
-                 </p>
+                </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 mb-10 gap-4" >
                 {
 
-                    categories.map((category, index) => <div className="mt-8 rounded-2xl shadow-md flex flex-col items-center p-5" key={index} >
-           
-                         <img className="max-w-xs rounded-3xl" src={ category.img } alt="" />           
+                    categories.map((category, index) => <Link to={`/specificCategories/${category.category}`} key={index}>
 
-                        <h2 className="text-3xl font-bold mt-4">  { category.category} </h2>
+                        <div className="mt-8 rounded-2xl shadow-md flex flex-col items-center p-5"  >
 
-     
+                            <img className="max-w-xs rounded-3xl" src={category.img} alt="" />
 
-                    </div>)
+                            <h2 className="text-3xl font-bold mt-4">  {category.category} </h2>
+
+
+
+                        </div>
+
+
+                    </Link>)
 
                 }
             </div>

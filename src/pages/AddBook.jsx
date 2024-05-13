@@ -37,7 +37,10 @@ const AddBook = () => {
         }
         
 
-        // axios.post('http://localhost:5000/books', async )
+        axios.post('http://localhost:5000/books', newBook )
+        .then(res => {
+            console.log(res.data)
+        })
 
 
 

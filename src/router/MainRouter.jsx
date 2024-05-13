@@ -11,6 +11,7 @@ import Register from "../pages/Register";
 import AddBook from "../pages/AddBook";
 import PrivateRoutes from "./PrivateRoutes";
 import Update from "../pages/Update";
+import SpecificCategories from "../pages/SpecificCategories";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,12 @@ const router = createBrowserRouter([
         element: <PrivateRoutes>
           <Update></Update>
         </PrivateRoutes>,
+      },
+      {
+        path: "/specificCategories/:category",
+        element: <SpecificCategories></SpecificCategories>
+          
+      
       },
 
       {
