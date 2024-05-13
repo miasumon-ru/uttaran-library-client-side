@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 
@@ -11,15 +11,36 @@ const BorrowedBooks = () => {
 
 
 
-    const { data: books = {}, isLoading } = useQuery({
+    const { data: books = {}, isLoading, refetch } = useQuery({
         queryFn: () => getBorrowedBooks(),
         queryKey: ["updatedData"]
     })
 
     console.log(books)
 
+    // mutation of the data 
+
+    const {mutateAsync} = useMutation({
+        mutationFn : async ({id}) => {
+
+            console.log("id for delete", id)
+
+            const {data} = await axios.delete(`http://localhost:5000/books/${id}`)
+
+            console.log(data)
+     
+
+        },
+
+        onSuccess : () => {
+
+            refetch()
+            
+        }
+    })
+
     const getBorrowedBooks = async () => {
-        const data = await axios.get(`http://localhost:5000/borrowedBooks?email=${user?.email}`)
+        const data = await axios.get(`http://localhost:5000/borrowedBooks/?email=${user?.email}`)
         return data.data
     }
 
@@ -30,11 +51,32 @@ const BorrowedBooks = () => {
         </div>
     }
 
+    // handle Return
+
+    const handleReturn = async(id, bookName) => {
+
+        console.log(bookName)
+
+        
+
+        
+
+         const {data} = await axios.patch(`http://localhost:5000/books/${bookName}`, {message : 'success'})
+
+         console.log(data)
+
+
+         await mutateAsync({id})
+
+    }
+
 
 
 
 
     return (
+
+    
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-10">
 
@@ -57,7 +99,7 @@ const BorrowedBooks = () => {
 
 
                         <div className="card-actions mt-8">
-                            <button className="btn w-full btn-primary">Return</button>
+                            <button onClick={()=> handleReturn(book._id, book.bookName)} className="btn w-full btn-primary">Return</button>
                         </div>
                     </div>
                 </div>)

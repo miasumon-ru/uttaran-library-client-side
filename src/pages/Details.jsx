@@ -163,7 +163,7 @@ const Details = () => {
                 {/* <button className="btn w-full mt-8"> Borrow </button> */}
 
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button disabled= {book.quantity == 0} className={"btn w-full mt-6" } onClick={() => document.getElementById('my_modal_5').showModal()}> Borrow </button>
+            <button disabled= {book.quantity == 0} className={"btn  w-full mt-6" } onClick={() => document.getElementById('my_modal_5').showModal()}> Borrow </button>
                 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                     <div className="modal-box">
 
