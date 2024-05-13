@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import { useForm } from "react-hook-form"
@@ -27,10 +27,32 @@ const Details = () => {
     const { id } = useParams()
     console.log(id)
 
-    const { data: book = {}, isLoading } = useQuery({
+    const { data: book = {}, isLoading, refetch } = useQuery({
         queryFn: () => getBookForDetails(),
         queryKey: ["bookForDetails"]
     })
+
+    const {mutateAsync} = useMutation({
+        mutationFn : async ({quantity, id}) => {
+
+            console.log(quantity, id)
+
+            const {data} = await axios.patch(`http://localhost:5000/borrowedBooks/${id}`, {quantity})
+            
+
+            console.log(data)
+
+        },
+
+        onSuccess : () => {
+            console.log("data updated")
+
+            // ui refresh
+
+            refetch()
+        }
+    })
+
 
     console.log(book)
 
@@ -46,8 +68,12 @@ const Details = () => {
         </div>
     }
 
+
+ 
+
+
     //   handle Borrow the book
-    const handleBorrow = (data) => {
+    const handleBorrow = async(data) => {
 
         const name = data.name
         const email = data.email
@@ -82,7 +108,10 @@ const Details = () => {
             })
 
 
-
+           await mutateAsync({
+            quantity : book.quantity,
+            id : book._id
+           })
 
 
 
