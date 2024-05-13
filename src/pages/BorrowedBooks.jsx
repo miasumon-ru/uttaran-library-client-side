@@ -1,13 +1,71 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
+
 
 
 
 const BorrowedBooks = () => {
-    return (
-        <div>
 
-            <h1> this is borrowedBooks page</h1>
-            
+    const { user } = useAuth()
+
+
+
+    const { data: books = {}, isLoading } = useQuery({
+        queryFn: () => getBorrowedBooks(),
+        queryKey: ["updatedData"]
+    })
+
+    console.log(books)
+
+    const getBorrowedBooks = async () => {
+        const data = await axios.get(`http://localhost:5000/borrowedBooks?email=${user?.email}`)
+        return data.data
+    }
+
+    if (isLoading) {
+        return <div className="text-center flex flex-col justify-center items-center min-h-screen">
+            <span className="loading loading-spinner loading-lg"></span>
+
         </div>
+    }
+
+
+
+
+
+    return (
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-10">
+
+            {
+                books.map(book => <div key={book._id} className="card bg-base-100 shadow-md">
+                    <figure><img src={book.image} alt="Shoes" /></figure>
+                    <div className="card-body">
+                        <h2 className="card-title text-3xl mb-6"> {book.bookName} </h2>
+
+                  
+                        <div className=" text-xl font-semibold space-y-4 text-[#888f91]">
+                            <p> Category : {book.category} </p>
+                            <div className="border border-dashed mt-2"> </div>
+                            <p> Borrowed Date : {book.dateOfBorrow} </p>
+                            <div className="border border-dashed mt-6"> </div>
+                            <p> Return Date : {book.dateOfReturn} </p>
+                            
+                        
+                        </div>
+
+
+                        <div className="card-actions mt-8">
+                            <button className="btn w-full btn-primary">Return</button>
+                        </div>
+                    </div>
+                </div>)
+            }
+
+
+        </div>
+
     );
 };
 

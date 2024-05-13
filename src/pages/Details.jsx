@@ -5,6 +5,10 @@ import axios from "axios";
 import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 
 
@@ -16,22 +20,6 @@ const Details = () => {
         handleSubmit,
     } = useForm()
 
-    //   handle Borrow the book
-    const handleBorrow = (data) => {
-
-        const name = data.name
-        const email = data.email
-        const dateOfBorrow = data.dateOfBorrow
-        const dateOfReturn = data.dateOfReturn
-
-        console.log({ name, email, dateOfBorrow, dateOfReturn })
-
-
-      
-
-
-
-    }
 
     const { user } = useAuth()
 
@@ -57,6 +45,49 @@ const Details = () => {
 
         </div>
     }
+
+    //   handle Borrow the book
+    const handleBorrow = (data) => {
+
+        const name = data.name
+        const email = data.email
+        const dateOfBorrow = data.dateOfBorrow
+        const dateOfReturn = data.dateOfReturn
+
+        console.log({ name, email, dateOfBorrow, dateOfReturn })
+
+        const borrowedBooksInfo = {
+
+            bookName: book.bookName,
+            email,
+            image: book.image,
+            category: book.category,
+            dateOfBorrow,
+            dateOfReturn
+
+        }
+
+
+        axios.post("http://localhost:5000/borrowedBooks", borrowedBooksInfo)
+            .then(res => {
+                console.log(res.data)
+
+                if (res.data.insertedId) {
+                   
+
+                    toast.success(" The book is borrowed successfully ")
+
+                  
+                }
+            })
+
+
+
+
+
+
+    }
+
 
 
 
@@ -116,25 +147,20 @@ const Details = () => {
                                     <label className="label">
                                         <span className="label-text">Date of Borrow</span>
                                     </label>
-                                    <input  type="date" {...register("dateOfBorrow")} placeholder="" className="input input-bordered " required />
+                                    <input type="date" {...register("dateOfBorrow")} placeholder="" className="input input-bordered " required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Date of Return</span>
                                     </label>
-                                    <input  type="date" {...register("dateOfReturn")} placeholder="" className="input input-bordered" required />
+                                    <input type="date" {...register("dateOfReturn")} placeholder="" className="input input-bordered" required />
                                 </div>
 
-
-
-                                {/* if there is a button in form, it will close the modal */}
-                                {/* <button className="btn"> Close </button> */}
-
-                                <div className="form-control mt-6">
+                                <div className="form-control  mt-6">
                                     <button className="btn btn-primary">Submit</button>
                                 </div>
-                                
+
                             </form>
 
                             <form method="dialog">
@@ -142,7 +168,7 @@ const Details = () => {
                                 <button className="btn w-full mt-6"> Close </button>
                             </form>
 
-                          
+
                         </div>
                     </div>
                 </dialog>
@@ -150,6 +176,11 @@ const Details = () => {
 
 
             </div>
+
+            <ToastContainer
+
+                
+            ></ToastContainer>
 
         </div>
     );
