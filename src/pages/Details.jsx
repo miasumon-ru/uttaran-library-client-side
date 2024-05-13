@@ -2,10 +2,39 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+import { useForm } from "react-hook-form"
+import useAuth from "../hooks/useAuth";
+
 
 
 
 const Details = () => {
+
+
+    const {
+        register,
+        handleSubmit,
+    } = useForm()
+
+    //   handle Borrow the book
+    const handleBorrow = (data) => {
+
+        const name = data.name
+        const email = data.email
+        const dateOfBorrow = data.dateOfBorrow
+        const dateOfReturn = data.dateOfReturn
+
+        console.log({ name, email, dateOfBorrow, dateOfReturn })
+
+
+      
+
+
+
+    }
+
+    const { user } = useAuth()
+
 
     const { id } = useParams()
     console.log(id)
@@ -52,11 +81,71 @@ const Details = () => {
                 <div className=" text-xl font-semibold space-y-3">
                     <p> Category : {book.category} </p>
                     <p> Ratings  : {book.ratings} </p>
-                    <p> Quantity  : {book.quantity} </p>          
+                    <p> Quantity  : {book.quantity} </p>
 
                 </div>
 
-                <button className="btn w-full mt-8"> Borrow </button>
+                {/* <button className="btn w-full mt-8"> Borrow </button> */}
+
+                {/* Open the modal using document.getElementById('ID').showModal() method */}
+                <button className="btn w-full mt-8" onClick={() => document.getElementById('my_modal_5').showModal()}>Borrow</button>
+                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
+                    <div className="modal-box">
+
+                        <h3 className="font-bold text-lg"> Provide necessary Information </h3>
+
+                        <div className="border border-dashed my-4"></div>
+
+                        <div className="modal-action w-full flex flex-col ">
+                            <form className="w-full" onSubmit={handleSubmit(handleBorrow)} method="dialog">
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input defaultValue={user?.displayName} type="text" {...register("name")} placeholder="Name" className="input input-bordered " required />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Email</span>
+                                    </label>
+                                    <input defaultValue={user?.email} type="Email" {...register("email")} placeholder="Email" className="input input-bordered" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Date of Borrow</span>
+                                    </label>
+                                    <input  type="date" {...register("dateOfBorrow")} placeholder="" className="input input-bordered " required />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Date of Return</span>
+                                    </label>
+                                    <input  type="date" {...register("dateOfReturn")} placeholder="" className="input input-bordered" required />
+                                </div>
+
+
+
+                                {/* if there is a button in form, it will close the modal */}
+                                {/* <button className="btn"> Close </button> */}
+
+                                <div className="form-control mt-6">
+                                    <button className="btn btn-primary">Submit</button>
+                                </div>
+                                
+                            </form>
+
+                            <form method="dialog">
+
+                                <button className="btn w-full mt-6"> Close </button>
+                            </form>
+
+                          
+                        </div>
+                    </div>
+                </dialog>
 
 
 

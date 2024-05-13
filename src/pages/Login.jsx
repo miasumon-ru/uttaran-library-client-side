@@ -79,12 +79,15 @@ const Login = () => {
                 <div className=" shrink-0 w-full max-w-sm shadow-md ml-4  bg-base-100">
                     <form onSubmit={handleSubmit(handleLogin)} className="card-body ">
                         <h1 className=" text-2xl md:text-5xl font-bold mb-10 text-center"> Login now</h1>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input type="Email" {...register("email")} placeholder="Email" className="input input-bordered" required />
                         </div>
+
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
@@ -93,6 +96,7 @@ const Login = () => {
 
 
                         </div>
+                        
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
