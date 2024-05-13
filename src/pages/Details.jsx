@@ -27,15 +27,21 @@ const Details = () => {
     const { id } = useParams()
     console.log(id)
 
+    // get book data for details
+
     const { data: book = {}, isLoading, refetch } = useQuery({
         queryFn: () => getBookForDetails(),
         queryKey: ["bookForDetails"]
     })
 
+    // updating data 
+
     const {mutateAsync} = useMutation({
         mutationFn : async ({quantity, id}) => {
 
             console.log(quantity, id)
+
+           
 
             const {data} = await axios.patch(`http://localhost:5000/borrowedBooks/${id}`, {quantity})
             
@@ -56,10 +62,14 @@ const Details = () => {
 
     console.log(book)
 
+
+
     const getBookForDetails = async () => {
         const data = await axios.get(`http://localhost:5000/books/${id}`)
         return data.data
     }
+
+    // loading
 
     if (isLoading) {
         return <div className="text-center flex flex-col justify-center items-center min-h-screen">
@@ -73,7 +83,12 @@ const Details = () => {
 
 
     //   handle Borrow the book
+
     const handleBorrow = async(data) => {
+
+        if(book.quantity < 0){
+            return toast("Book is not Available")
+        }
 
         const name = data.name
         const email = data.email
@@ -148,7 +163,7 @@ const Details = () => {
                 {/* <button className="btn w-full mt-8"> Borrow </button> */}
 
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-                <button className="btn w-full mt-8" onClick={() => document.getElementById('my_modal_5').showModal()}>Borrow</button>
+            <button disabled= {book.quantity == 0} className={"btn w-full mt-6" } onClick={() => document.getElementById('my_modal_5').showModal()}> Borrow </button>
                 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                     <div className="modal-box">
 
