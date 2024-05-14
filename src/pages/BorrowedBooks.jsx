@@ -81,7 +81,7 @@ const BorrowedBooks = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-10">
 
             {
-                books.map(book => <div key={book._id} className="card bg-base-100 shadow-md">
+                books.map(book => <div key={book._id} className="card border p-5 bg-base-100 shadow-md">
                     <figure><img src={book.image} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title text-3xl mb-6"> {book.bookName} </h2>

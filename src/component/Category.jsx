@@ -60,7 +60,7 @@ const Category = () => {
 
                     categories.map((category, index) => <Link to={`/specificCategories/${category.category}`} key={index}>
 
-                        <div className="mt-8 rounded-2xl shadow-md flex flex-col items-center p-5"  >
+                        <div className="mt-8 border rounded-2xl shadow-md flex flex-col items-center p-5"  >
 
                             <img className="max-w-xs rounded-3xl" src={category.img} alt="" />
 

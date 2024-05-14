@@ -50,6 +50,7 @@ const Navbar = () => {
 
         if(JSON.parse(localStorage.getItem("theme")) == "dark" ){
             document.querySelector("body").setAttribute("style" , "color:white")
+            document.querySelector(".swiper").setAttribute("style" , "color:gray")
         }
         else{
             document.querySelector("body").setAttribute("style" , "color:black")
