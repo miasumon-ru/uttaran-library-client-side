@@ -2,10 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 // import { useEffect, useState } from "react";
 import BookCard from "../component/BookCard";
+import useAuth from "../hooks/useAuth";
 
 
 
 const AllBooks = () => {
+
+    const {user} = useAuth()
 
     // const [books, setBooks] = useState([])
 
@@ -26,7 +29,7 @@ const AllBooks = () => {
     console.log(books)
 
     const getBooksData = async () => {
-        const data = await axios.get('http://localhost:5000/books')
+        const data = await axios.get(`http://localhost:5000/books?email=${user?.email}` , {withCredentials : true})
         return data.data
     }
 

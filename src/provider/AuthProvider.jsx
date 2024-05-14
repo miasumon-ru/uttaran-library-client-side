@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import auth from "../firebase/firebase.config";
 
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 const googleProvider = new GoogleAuthProvider();
 
 
@@ -54,15 +55,39 @@ const AuthProvider = ({children}) => {
 
             console.log(currentUser)
 
+            const loggedUser = {
+                email : currentUser?.email || user?.email
+            }
+
             setUser(currentUser)
             setLoading(false)
+
+        
+            console.log(loggedUser)
+
+            if(currentUser){
+                axios.post('http://localhost:5000/jwt', loggedUser, {withCredentials:true} )
+                .then(res => {
+                    console.log(res.data)
+                })
+            }
+            else{
+                axios.post("http://localhost:5000/logout", loggedUser  , {withCredentials : true})
+                .then( res => {
+                    console.log(res.data)
+                })
+            }
+
+
+
+
         })
 
         return ()=> {
            unSubscribe()
         }
 
-    }, [])
+    }, [user?.email])
 
     const authInfo = {
 

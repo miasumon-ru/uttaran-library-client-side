@@ -2,10 +2,13 @@ import { useForm } from "react-hook-form"
 
 import formImg from '../assets/form.jpg'
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 
 
 const AddBook = () => {
+
+    const {user} = useAuth()
 
 
     const {
@@ -22,7 +25,7 @@ const AddBook = () => {
         const authorName = data.authorName
         const category = data.category
         const ratings = data.ratings
-        const quantity = data.quantity
+        const quantity = parseInt(data.quantity)
         const shortDescription = data.shortDescription
 
 
@@ -32,16 +35,15 @@ const AddBook = () => {
             authorName,
             category,
             ratings,
-            quantity,
+            quantity: quantity,
             shortDescription
         }
         
 
-        axios.post('http://localhost:5000/books', newBook )
+        axios.post(`http://localhost:5000/books?email=${user?.email}`, newBook, {withCredentials:true} )
         .then(res => {
             console.log(res.data)
         })
-
 
 
     }
