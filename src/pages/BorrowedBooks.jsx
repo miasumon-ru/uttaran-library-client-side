@@ -13,7 +13,7 @@ const BorrowedBooks = () => {
 
     const { data: books = {}, isLoading, refetch } = useQuery({
         queryFn: () => getBorrowedBooks(),
-        queryKey: ["updatedData"]
+        queryKey: ["borrow"]
     })
 
     console.log(books)

@@ -45,8 +45,10 @@ const AllBooks = () => {
 
 
     const getBooksData = async () => {
+
         const data = await axios.get(`http://localhost:5000/books?email=${user?.email}`, { withCredentials: true })
         return data.data
+        
     }
 
     const getCustomizedData = async () => {

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {  useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 import { useForm } from "react-hook-form"
@@ -12,7 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
+
 const Details = () => {
+
+    const queryClient = useQueryClient()
 
 
     const {
@@ -33,6 +36,16 @@ const Details = () => {
         queryFn: () => getBookForDetails(),
         queryKey: ["bookForDetails"]
     })
+
+    // for checking borrow more than one
+
+    const { data: borrowedBooks = {},  } = useQuery({
+        queryFn: () => getBorrowedBooks(),
+        queryKey: ["borrow"]
+    })
+
+    console.log("borrowedBooks are " , borrowedBooks)
+
 
     // updating data 
 
@@ -56,6 +69,7 @@ const Details = () => {
             // ui refresh
 
             refetch()
+            queryClient.invalidateQueries({queryKey : ['borrow']})
         }
     })
 
@@ -69,6 +83,13 @@ const Details = () => {
         return data.data
     }
 
+    // for borrowed books
+
+    const getBorrowedBooks = async () => {
+        const data = await axios.get(`http://localhost:5000/borrowedBooks/?email=${user?.email}`)
+        return data.data
+    }
+
     // loading
 
     if (isLoading) {
@@ -79,7 +100,19 @@ const Details = () => {
     }
 
 
- 
+    // const borrow = (name) => {
+
+    //     console.log( "name is : ",  name)
+
+    //    const isAvailable = borrowedBooks.find(book => book.bookName === name)
+
+    //    console.log( "available is ",  isAvailable)
+
+    //    if(isAvailable){
+    //     return alert("You have already borrowed this book")
+    //    }
+
+    // }
 
 
     //   handle Borrow the book
@@ -89,6 +122,19 @@ const Details = () => {
         if(book.quantity < 0){
             return toast("Book is not Available")
         }
+
+      
+
+        const isAvailable = borrowedBooks.find(borrowedBook => borrowedBook.bookName === book.bookName)
+
+        if(isAvailable){
+            return toast.warn("You have already borrowed this book")
+           }
+    
+
+
+
+       
 
         const name = data.name
         const email = data.email
@@ -163,7 +209,7 @@ const Details = () => {
                 {/* <button className="btn w-full mt-8"> Borrow </button> */}
 
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button disabled= {book.quantity == 0} className={"btn  w-full mt-6" } onClick={() => document.getElementById('my_modal_5').showModal()}> Borrow </button>
+            <button disabled= {book.quantity <= 0} className={"btn  w-full mt-6" } onClick={() => document.getElementById('my_modal_5').showModal()}> Borrow </button>
                 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                     <div className="modal-box">
 
@@ -202,7 +248,7 @@ const Details = () => {
                                 </div>
 
                                 <div className="form-control  mt-6">
-                                    <button className="btn btn-primary">Submit</button>
+                                    <button disabled={book.quantity <=0 }  className="btn btn-primary">Submit</button>
                                 </div>
 
                             </form>
@@ -222,6 +268,8 @@ const Details = () => {
             </div>
 
             <ToastContainer
+
+            position="top-left"
 
                 
             ></ToastContainer>
