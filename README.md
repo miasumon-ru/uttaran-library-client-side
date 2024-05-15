@@ -7,7 +7,7 @@ It is a website related to the library management system.
 A person can borrow , add or update a book on the base of his desired category logging into the website.
 
 
-live link : 
+live link : https://assignment-eleven-client-side.web.app/
 
 
 
