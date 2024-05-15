@@ -183,7 +183,7 @@ const Details = () => {
 
 
     return (
-        <div className="flex flex-col md:flex-row gap-4 my-10">
+        <div className="flex flex-col md:flex-row gap-4 my-10 p-5">
 
          
                 <Helmet>

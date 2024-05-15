@@ -79,7 +79,7 @@ const SpecificCategories = () => {
                         <div className='flex flex-row justify-between'>
                             <p className='text-[16px]'> Category : <span className=" p-2 rounded-2xl font-bold text-xl"> {category.category} </span> </p>
 
-                            <p className='text-[16px] flex flex-row gap-3 items-center'> Ratings :   <Rating halfFillMode="box" style={{ maxWidth: 100 }} onChange={handleChange} readOnly value={category.ratings}></Rating>
+                            <p className='text-[16px] flex flex-row gap-3 items-center justify-center'> Ratings :   <Rating halfFillMode="box" style={{ maxWidth: 100 }} onChange={handleChange} readOnly value={category.ratings}></Rating>
 
                             </p>
                         </div>
