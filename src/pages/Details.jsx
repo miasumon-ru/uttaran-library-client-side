@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import {  useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 import { useForm } from "react-hook-form"
@@ -7,6 +7,7 @@ import useAuth from "../hooks/useAuth";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet";
 
 
 
@@ -39,37 +40,37 @@ const Details = () => {
 
     // for checking borrow more than one
 
-    const { data: borrowedBooks = {},  } = useQuery({
+    const { data: borrowedBooks = {}, } = useQuery({
         queryFn: () => getBorrowedBooks(),
         queryKey: ["borrow"]
     })
 
-    console.log("borrowedBooks are " , borrowedBooks)
+    console.log("borrowedBooks are ", borrowedBooks)
 
 
     // updating data 
 
-    const {mutateAsync} = useMutation({
-        mutationFn : async ({quantity, id}) => {
+    const { mutateAsync } = useMutation({
+        mutationFn: async ({ quantity, id }) => {
 
             console.log(quantity, id)
 
-           
 
-            const {data} = await axios.patch(`https://assignment-eleven-server-iota.vercel.app/borrowedBooks/${id}`, {quantity})
-            
+
+            const { data } = await axios.patch(`https://assignment-eleven-server-iota.vercel.app/borrowedBooks/${id}`, { quantity })
+
 
             console.log(data)
 
         },
 
-        onSuccess : () => {
+        onSuccess: () => {
             console.log("data updated")
 
             // ui refresh
 
             refetch()
-            queryClient.invalidateQueries({queryKey : ['borrow']})
+            queryClient.invalidateQueries({ queryKey: ['borrow'] })
         }
     })
 
@@ -117,24 +118,24 @@ const Details = () => {
 
     //   handle Borrow the book
 
-    const handleBorrow = async(data) => {
+    const handleBorrow = async (data) => {
 
-        if(book.quantity < 0){
+        if (book.quantity < 0) {
             return toast("Book is not Available")
         }
 
-      
+
 
         const isAvailable = borrowedBooks.find(borrowedBook => borrowedBook.bookName === book.bookName)
 
-        if(isAvailable){
+        if (isAvailable) {
             return toast.warn("You have already borrowed this book")
-           }
-    
+        }
 
 
 
-       
+
+
 
         const name = data.name
         const email = data.email
@@ -160,19 +161,19 @@ const Details = () => {
                 console.log(res.data)
 
                 if (res.data.insertedId) {
-                   
+
 
                     toast.success(" The book is borrowed successfully ")
 
-                  
+
                 }
             })
 
 
-           await mutateAsync({
-            quantity : book.quantity,
-            id : book._id
-           })
+        await mutateAsync({
+            quantity: book.quantity,
+            id: book._id
+        })
 
 
 
@@ -183,6 +184,14 @@ const Details = () => {
 
     return (
         <div className="flex flex-col md:flex-row gap-4 my-10">
+
+            <div>
+                <Helmet>
+
+                    <title> Details || Uttaran Library</title>
+
+                </Helmet>
+            </div>
 
             <div className="w-full flex items-center  p-5 rounded-2xl">
 
@@ -209,7 +218,7 @@ const Details = () => {
                 {/* <button className="btn w-full mt-8"> Borrow </button> */}
 
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button disabled= {book.quantity <= 0} className={"btn  w-full mt-6" } onClick={() => document.getElementById('my_modal_5').showModal()}> Borrow </button>
+                <button disabled={book.quantity <= 0} className={"btn  w-full mt-6"} onClick={() => document.getElementById('my_modal_5').showModal()}> Borrow </button>
                 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                     <div className="modal-box">
 
@@ -248,7 +257,7 @@ const Details = () => {
                                 </div>
 
                                 <div className="form-control  mt-6">
-                                    <button disabled={book.quantity <=0 }  className="btn btn-primary">Submit</button>
+                                    <button disabled={book.quantity <= 0} className="btn btn-primary">Submit</button>
                                 </div>
 
                             </form>
@@ -269,9 +278,9 @@ const Details = () => {
 
             <ToastContainer
 
-            position="top-left"
+                position="top-left"
 
-                
+
             ></ToastContainer>
 
         </div>

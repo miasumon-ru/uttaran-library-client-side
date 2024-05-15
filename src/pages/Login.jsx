@@ -7,18 +7,19 @@ import { FcGoogle } from "react-icons/fc";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
     const navigate = useNavigate()
 
-    const {login, googleLogin} = useAuth()
+    const { login, googleLogin } = useAuth()
 
-    
+
 
     const {
         register,
         handleSubmit,
-      } = useForm()
+    } = useForm()
 
     //   handleLogin
 
@@ -27,39 +28,39 @@ const Login = () => {
         const email = data.email
         const password = data.password
 
-        console.log({email, password})
+        console.log({ email, password })
 
 
         // verify password
-        
+
 
         // login
 
         login(email, password)
-        .then(result => {
-            console.log(result.user)
+            .then(result => {
+                console.log(result.user)
 
-            toast.success("login is successful")
+                toast.success("login is successful")
 
-            setTimeout(()=> {
+                setTimeout(() => {
 
-                navigate('/')
-    
-            },2500)
+                    navigate('/')
 
- 
-        })
-        .catch(error => {
-            console.log(error.message)
-            if(error.message){
-                toast.warn("Please provide correct email and password")
-            }
-        })
+                }, 2500)
+
+
+            })
+            .catch(error => {
+                console.log(error.message)
+                if (error.message) {
+                    toast.warn("Please provide correct email and password")
+                }
+            })
 
         // reset the form
         e.target.reset()
 
-      
+
 
 
 
@@ -70,27 +71,36 @@ const Login = () => {
     const handleGoogleLogin = () => {
 
         googleLogin()
-        .then(result=> {
-            console.log(result.user)
+            .then(result => {
+                console.log(result.user)
 
-            toast.success("Login is successful")
+                toast.success("Login is successful")
 
-            setTimeout(()=> {
+                setTimeout(() => {
 
-                navigate('/')
+                    navigate('/')
 
-            },2500)
+                }, 2500)
 
-        })
-        .catch(error => {
-            console.log(error.message)
-        })
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
     }
 
 
 
     return (
         <div className="">
+
+            <div>
+                <Helmet>
+
+                    <title> Login || Uttaran Library</title>
+
+                </Helmet>
+            </div>
+
             <div className="hero-content flex-col lg:flex-row md:mt-10">
                 <div className="text-center lg:text-left w-full flex items-center justify-center">
 
@@ -118,7 +128,7 @@ const Login = () => {
 
 
                         </div>
-                        
+
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
@@ -135,7 +145,7 @@ const Login = () => {
 
                     <ToastContainer
 
-                    position='top-center'
+                        position='top-center'
                     ></ToastContainer>
 
                 </div>

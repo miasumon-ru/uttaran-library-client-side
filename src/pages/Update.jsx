@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import updateImg from '../assets/update.jpg'
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 const Update = () => {
@@ -111,11 +112,11 @@ const Update = () => {
 
             refetch()
 
-            queryClient.invalidateQueries({queryKey : ["booksData", "customizedData"]})
+            queryClient.invalidateQueries({ queryKey: ["booksData", "customizedData"] })
 
             toast.success(" Book is updated successfully ")
 
-            setTimeout(()=> {
+            setTimeout(() => {
 
                 navigate("/allBooks")
 
@@ -144,6 +145,15 @@ const Update = () => {
 
     return (
         <div className="flex flex-col lg:flex-row-reverse gap-8 my-10">
+
+            <div>
+                <Helmet>
+
+                    <title> Update || Uttaran Library</title>
+
+                </Helmet>
+            </div>
+
             <div className="flex flex-col items-center" >
 
                 <img className="" src={updateImg} alt="" />

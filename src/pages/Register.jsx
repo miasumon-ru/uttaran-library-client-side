@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signOut, updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
 
@@ -35,57 +36,57 @@ const Register = () => {
 
         // 
 
-        if(password.length < 6 ){
+        if (password.length < 6) {
             return toast.warn("Password must be at least 6 characters")
         }
-        else if(!/[A-Z]/.test(password)){
+        else if (!/[A-Z]/.test(password)) {
             return toast.warn(" Please provide at least one capital letter in the password field ")
         }
-        else if(!/[^\w\s]/.test(password)){
+        else if (!/[^\w\s]/.test(password)) {
             return toast.warn("Please provide at least one special character in the password field")
         }
 
         // createUser
 
         createUser(email, password)
-        .then(result => {
-            console.log(result.user)
+            .then(result => {
+                console.log(result.user)
 
-            // update profile
+                // update profile
 
-            updateProfile(auth.currentUser , {
-                displayName : name,
-                photoURL : data.photoURL
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: data.photoURL
+                })
+                    .then(() => {
+                        console.log("updated profile")
+                    })
+                    .catch((error) => {
+                        console.log(error.message)
+                    })
+                toast.success("  Successful Registration and Please Login ")
+
+
+                // signOut
+
+                signOut(auth)
+                    .then(() => {
+                        console.log("logout successfull")
+                    })
+
+                // navigate to the login page 
+
+                setTimeout(() => {
+                    navigate('/login')
+                }, 3000)
+
+
+
+
             })
-            .then(()=> {
-                console.log("updated profile")
-            })
-            .catch((error)=> {
+            .catch(error => {
                 console.log(error.message)
             })
-            toast.success("  Successful Registration and Please Login ")
-
-
-            // signOut
-
-            signOut(auth)
-            .then(()=> {
-                console.log("logout successfull")
-            })
-
-            // navigate to the login page 
-
-            setTimeout(() => {
-                navigate('/login')
-            }, 3000)
-
-
-
-
-        })
-        .catch(error => {
-            console.log(error.message)
-        })
 
         // reset the form
 
@@ -97,6 +98,14 @@ const Register = () => {
 
     return (
         <div className="">
+
+            <div>
+                <Helmet>
+
+                    <title> Home || Uttaran Library</title>
+
+                </Helmet>
+            </div>
             <div className="hero-content flex-col lg:flex-row md:mt-10">
                 <div className="text-center lg:text-left w-full flex  items-center justify-center">
 
@@ -148,12 +157,12 @@ const Register = () => {
                         </div>
                     </form>
 
-                   
+
                 </div>
 
                 <ToastContainer
-                position="top-center"
-                autoClose={5000}
+                    position="top-center"
+                    autoClose={5000}
                 >
 
                 </ToastContainer>

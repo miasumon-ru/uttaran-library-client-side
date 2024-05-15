@@ -8,6 +8,7 @@ import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 
 const SpecificCategories = () => {
@@ -15,22 +16,22 @@ const SpecificCategories = () => {
     const [state, setState] = useState({
         review: '',
         rating: 0 // Initial value
-      })
+    })
 
-      console.log(state)
+    console.log(state)
 
-      function handleChange(selectedValue) {
+    function handleChange(selectedValue) {
         // 1. Logs the selected rating (1, 2, 3...)
         console.log(selectedValue)
-    
+
         // 2. Do something with or without the value...
-    
+
         // 3. Update Rating UI
         setState((prevState) => ({
-          ...prevState,
-          rating: selectedValue
+            ...prevState,
+            rating: selectedValue
         }))
-      }
+    }
 
 
 
@@ -60,6 +61,14 @@ const SpecificCategories = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
+            <div>
+                <Helmet>
+
+                    <title> SpecificCategories || Uttaran Library</title>
+
+                </Helmet>
+            </div>
+
 
             {
                 categories.map((category, index) => <div key={index} className="card bg-base-100 shadow-sm border p-4">
@@ -74,8 +83,8 @@ const SpecificCategories = () => {
                             <p className='text-[16px]'> Category : <span className=" p-2 rounded-2xl font-bold text-xl"> {category.category} </span> </p>
 
                             <p className='text-[16px] flex flex-row gap-3 items-center'> Ratings :   <Rating halfFillMode="box" style={{ maxWidth: 100 }} onChange={handleChange} readOnly value={category.ratings}></Rating>
-                            
-                             </p>
+
+                            </p>
                         </div>
 
                         {/* {category.ratings} */}

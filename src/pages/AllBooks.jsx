@@ -3,6 +3,7 @@ import axios from "axios";
 // import { useEffect, useState } from "react";
 import BookCard from "../component/BookCard";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 // import { useState } from "react";
 
 
@@ -54,7 +55,7 @@ const AllBooks = () => {
 
         const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/books?email=${user?.email}`, { withCredentials: true })
         return data.data
-        
+
     }
 
     const getCustomizedData = async () => {
@@ -96,6 +97,14 @@ const AllBooks = () => {
                     </ul>
                 </div>
             </div> */}
+
+            <div>
+                <Helmet>
+
+                    <title> AllBooks || Uttaran Library</title>
+
+                </Helmet>
+            </div>
 
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">

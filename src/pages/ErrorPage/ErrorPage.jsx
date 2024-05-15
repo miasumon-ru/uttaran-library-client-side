@@ -1,10 +1,19 @@
 
 import { Link } from 'react-router-dom';
 import './ErrorPage.css'
+import { Helmet } from 'react-helmet';
 
 const ErrorPage = () => {
     return (
         <div>
+
+            <div>
+                <Helmet>
+
+                    <title> ErrorPage || Uttaran Library</title>
+
+                </Helmet>
+            </div>
 
             <section className="page_404">
                 <div className="container">

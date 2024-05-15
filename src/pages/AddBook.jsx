@@ -12,6 +12,7 @@ import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 
 
@@ -21,24 +22,24 @@ const AddBook = () => {
     const [state, setState] = useState({
         review: '',
         rating: 0 // Initial value
-      })
+    })
 
-      console.log(state)
+    console.log(state)
 
-      function handleChange(selectedValue) {
+    function handleChange(selectedValue) {
         // 1. Logs the selected rating (1, 2, 3...)
         console.log(selectedValue)
-    
+
         // 2. Do something with or without the value...
-    
+
         // 3. Update Rating UI
         setState((prevState) => ({
-          ...prevState,
-          rating: selectedValue
+            ...prevState,
+            rating: selectedValue
         }))
-      }
+    }
 
-    const {user} = useAuth()
+    const { user } = useAuth()
 
     const navigate = useNavigate()
 
@@ -60,7 +61,7 @@ const AddBook = () => {
         const quantity = parseInt(data.quantity)
         const shortDescription = data.shortDescription
 
-    
+
 
         const newBook = {
             image,
@@ -71,25 +72,25 @@ const AddBook = () => {
             quantity: quantity,
             shortDescription
         }
-        
 
-        axios.post(`https://assignment-eleven-server-iota.vercel.app/books?email=${user?.email}`, newBook, {withCredentials:true} )
-        .then(res => {
-            console.log(res.data)
 
-            if(res.data.insertedId){
-                toast.success("The book is added successfully")
+        axios.post(`https://assignment-eleven-server-iota.vercel.app/books?email=${user?.email}`, newBook, { withCredentials: true })
+            .then(res => {
+                console.log(res.data)
 
-                e.target.reset()
+                if (res.data.insertedId) {
+                    toast.success("The book is added successfully")
 
-                setTimeout(()=> {
+                    e.target.reset()
 
-                    navigate("/allBooks")
+                    setTimeout(() => {
 
-                }, 2500)
-            }
+                        navigate("/allBooks")
 
-        })
+                    }, 2500)
+                }
+
+            })
 
 
     }
@@ -98,6 +99,16 @@ const AddBook = () => {
     return (
 
         <div className="flex flex-col lg:flex-row-reverse gap-8 my-10">
+
+            <div>
+                <Helmet>
+
+                    <title> AddBook || Uttaran Library</title>
+
+                </Helmet>
+            </div>
+
+
             <div className="flex flex-col items-center" >
 
                 <img className="" src={formImg} alt="" />
@@ -154,7 +165,7 @@ const AddBook = () => {
                                 <span className="label-text">Category</span>
                             </label>
 
-                            <select  className="border p-4 rounded-md" {...register("category")}>
+                            <select className="border p-4 rounded-md" {...register("category")}>
                                 <option value="Travel">Travel</option>
                                 <option value="Fiction">Fiction</option>
                                 <option value="Life Style and Hobbies">Life Style and Hobbies</option>
@@ -166,9 +177,9 @@ const AddBook = () => {
 
                         <div className="form-control w-full">
 
-                        
 
-                             <label className="label mb-2">
+
+                            <label className="label mb-2">
                                 <span className="label-text">Ratings</span>
                             </label>
                             {/* <input type="number"  {...register("ratings")} placeholder="Ratings" className="input input-bordered" required /> */}
