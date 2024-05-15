@@ -185,13 +185,13 @@ const Details = () => {
     return (
         <div className="flex flex-col md:flex-row gap-4 my-10">
 
-            <div>
+         
                 <Helmet>
 
                     <title> Details || Uttaran Library</title>
 
                 </Helmet>
-            </div>
+            
 
             <div className="w-full flex items-center  p-5 rounded-2xl">
 

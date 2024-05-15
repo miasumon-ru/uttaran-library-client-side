@@ -16,6 +16,7 @@ const About = () => {
                 <h1 className="text-5xl mt-6 mb-8">About Us</h1>
 
                 <p className='text-xl text-[#8c9192]  '>
+                    
                     The Uttaran Library is a vibrant hub of knowledge and imagination, nestled in the heart of your community. With its inviting atmosphere and diverse collection of books, it serves as a haven for avid readers and curious minds alike.
 
                     <br />

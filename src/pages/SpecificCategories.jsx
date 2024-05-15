@@ -61,14 +61,11 @@ const SpecificCategories = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <div>
                 <Helmet>
 
                     <title> SpecificCategories || Uttaran Library</title>
 
                 </Helmet>
-            </div>
-
 
             {
                 categories.map((category, index) => <div key={index} className="card bg-base-100 shadow-sm border p-4">

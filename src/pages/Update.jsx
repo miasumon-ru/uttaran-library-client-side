@@ -146,13 +146,13 @@ const Update = () => {
     return (
         <div className="flex flex-col lg:flex-row-reverse gap-8 my-10">
 
-            <div>
+      
                 <Helmet>
 
                     <title> Update || Uttaran Library</title>
 
                 </Helmet>
-            </div>
+          
 
             <div className="flex flex-col items-center" >
 
