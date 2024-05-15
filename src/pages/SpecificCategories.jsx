@@ -22,7 +22,7 @@ const SpecificCategories = () => {
 
     function handleChange(selectedValue) {
         // 1. Logs the selected rating (1, 2, 3...)
-        console.log(selectedValue)
+        // console.log(selectedValue)
 
         // 2. Do something with or without the value...
 
@@ -37,14 +37,14 @@ const SpecificCategories = () => {
 
     const { category } = useParams()
 
-    console.log(category)
+    // console.log(category)
 
     const { data: categories = [], isLoading } = useQuery({
         queryFn: () => getSpecificCategories(),
         queryKey: ["specificCategories"]
     })
 
-    console.log(categories)
+    // console.log(categories)
 
     const getSpecificCategories = async () => {
         const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/specificCategories/${category}`)

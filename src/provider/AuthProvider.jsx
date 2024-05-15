@@ -53,7 +53,7 @@ const AuthProvider = ({children}) => {
 
         const unSubscribe = onAuthStateChanged(auth, (currentUser)=> {
 
-            console.log(currentUser)
+            // console.log(currentUser)
 
             const loggedUser = {
                 email : currentUser?.email || user?.email
@@ -63,7 +63,7 @@ const AuthProvider = ({children}) => {
             setLoading(false)
 
         
-            console.log(loggedUser)
+            // console.log(loggedUser)
 
             if(currentUser){
                 axios.post('https://assignment-eleven-server-iota.vercel.app/jwt', loggedUser, {withCredentials:true} )

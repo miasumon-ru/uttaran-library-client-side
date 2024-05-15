@@ -28,7 +28,7 @@ const Navbar = () => {
 
         logOut()
             .then(() => {
-                console.log("logout is successful")
+                // console.log("logout is successful")
             })
 
 

@@ -26,7 +26,7 @@ const Update = () => {
     //   handle submit for update 
 
     const handleUpdate = async (data) => {
-        console.log(data)
+        // console.log(data)
 
         const imageURL = data.imageURL
         const bookName = data.bookName
@@ -34,7 +34,7 @@ const Update = () => {
         const category = data.category
         const ratings = data.ratings
 
-        console.log(bookName, ratings)
+        // console.log(bookName, ratings)
 
 
         const updatedBook = {
@@ -82,7 +82,7 @@ const Update = () => {
 
 
     const { id } = useParams()
-    console.log(id)
+    // console.log(id)
 
 
     const { data: book = {}, isLoading, refetch } = useQuery({
@@ -90,14 +90,14 @@ const Update = () => {
         queryKey: ["updatedData"]
     })
 
-    console.log(book)
+    // console.log(book)
 
     // updating data 
 
     const { mutateAsync } = useMutation({
         mutationFn: async (updatedBook) => {
 
-            console.log(updatedBook)
+            // console.log(updatedBook)
 
             const { data } = await axios.put("https://assignment-eleven-server-iota.vercel.app/booksUpdate", updatedBook)
 
@@ -106,7 +106,7 @@ const Update = () => {
         },
 
         onSuccess: () => {
-            console.log("data updated")
+            // console.log("data updated")
 
             // ui refresh
 

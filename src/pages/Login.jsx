@@ -28,7 +28,7 @@ const Login = () => {
         const email = data.email
         const password = data.password
 
-        console.log({ email, password })
+        // console.log({ email, password })
 
 
         // verify password
@@ -51,7 +51,7 @@ const Login = () => {
 
             })
             .catch(error => {
-                console.log(error.message)
+                // console.log(error.message)
                 if (error.message) {
                     toast.warn("Please provide correct email and password")
                 }

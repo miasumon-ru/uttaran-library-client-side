@@ -6,7 +6,6 @@ import Slider from "../component/Slider/Slider";
 import { Helmet } from "react-helmet";
 
 
-
 const Home = () => {
     return (
         <div>

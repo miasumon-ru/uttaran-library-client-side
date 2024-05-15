@@ -59,7 +59,7 @@ const Register = () => {
                     photoURL: data.photoURL
                 })
                     .then(() => {
-                        console.log("updated profile")
+                        // console.log("updated profile")
                     })
                     .catch((error) => {
                         console.log(error.message)
@@ -71,7 +71,7 @@ const Register = () => {
 
                 signOut(auth)
                     .then(() => {
-                        console.log("logout successfull")
+                        // console.log("logout successfull")
                     })
 
                 // navigate to the login page 

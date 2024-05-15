@@ -34,7 +34,7 @@ const Category = () => {
         queryKey: ["categoryData"]
     })
 
-    console.log(categories)
+    // console.log(categories)
 
     const getData = async () => {
         const data = await axios.get('https://assignment-eleven-server-iota.vercel.app/categories')

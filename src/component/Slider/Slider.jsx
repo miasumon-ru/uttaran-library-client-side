@@ -56,7 +56,7 @@ const Slider = () => {
 
 
 
-    console.log(sliders)
+    // console.log(sliders)
 
 
     return (

@@ -36,15 +36,15 @@ const AllBooks = () => {
         queryKey: ["booksData"]
     })
 
-    const { data: filteredData = [] } = useQuery({
-        queryFn: () => getCustomizedData(),
-        queryKey: ["customizedData"]
-    })
+    // const { data: filteredData = [] } = useQuery({
+    //     queryFn: () => getCustomizedData(),
+    //     queryKey: ["customizedData"]
+    // })
 
 
-    console.log(books)
+    // console.log(books)
 
-    console.log("filtered data is ", filteredData)
+    // console.log("filtered data is ", filteredData)
 
     // display book
 
@@ -58,10 +58,10 @@ const AllBooks = () => {
 
     }
 
-    const getCustomizedData = async () => {
-        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/filteredData?email=${user?.email}`, { withCredentials: true })
-        return data.data
-    }
+    // const getCustomizedData = async () => {
+    //     const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/filteredData?email=${user?.email}`, { withCredentials: true })
+    //     return data.data
+    // }
 
     if (isLoading) {
         return <div className="text-center flex flex-col justify-center items-center min-h-screen">

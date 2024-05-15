@@ -29,7 +29,7 @@ const Details = () => {
 
 
     const { id } = useParams()
-    console.log(id)
+    // console.log(id)
 
     // get book data for details
 
@@ -45,7 +45,7 @@ const Details = () => {
         queryKey: ["borrow"]
     })
 
-    console.log("borrowedBooks are ", borrowedBooks)
+    // console.log("borrowedBooks are ", borrowedBooks)
 
 
     // updating data 
@@ -53,7 +53,7 @@ const Details = () => {
     const { mutateAsync } = useMutation({
         mutationFn: async ({ quantity, id }) => {
 
-            console.log(quantity, id)
+            // console.log(quantity, id)
 
 
 
@@ -246,14 +246,14 @@ const Details = () => {
                                     <label className="label">
                                         <span className="label-text">Date of Borrow</span>
                                     </label>
-                                    <input type="date" {...register("dateOfBorrow")} placeholder="" className="input input-bordered " required />
+                                    <input type="date" {...register("dateOfBorrow")} placeholder=" Date Of Borrow" className="input input-bordered " required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Date of Return</span>
                                     </label>
-                                    <input type="date" {...register("dateOfReturn")} placeholder="" className="input input-bordered" required />
+                                    <input type="date" {...register("dateOfReturn")} placeholder=" Date Of Return " className="input input-bordered" required />
                                 </div>
 
                                 <div className="form-control  mt-6">

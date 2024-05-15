@@ -24,11 +24,11 @@ const AddBook = () => {
         rating: 0 // Initial value
     })
 
-    console.log(state)
+    // console.log(state)
 
     function handleChange(selectedValue) {
         // 1. Logs the selected rating (1, 2, 3...)
-        console.log(selectedValue)
+        // console.log(selectedValue)
 
         // 2. Do something with or without the value...
 
@@ -76,7 +76,7 @@ const AddBook = () => {
 
         axios.post(`https://assignment-eleven-server-iota.vercel.app/books?email=${user?.email}`, newBook, { withCredentials: true })
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
 
                 if (res.data.insertedId) {
                     toast.success("The book is added successfully")

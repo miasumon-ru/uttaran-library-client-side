@@ -20,14 +20,14 @@ const BorrowedBooks = () => {
         queryKey: ["borrow"]
     })
 
-    console.log(books)
+    // console.log(books)
 
     // mutation of the data 
 
     const { mutateAsync } = useMutation({
         mutationFn: async ({ id }) => {
 
-            console.log("id for delete", id)
+            // console.log("id for delete", id)
 
             const { data } = await axios.delete(`https://assignment-eleven-server-iota.vercel.app/books/${id}`)
 
@@ -61,7 +61,7 @@ const BorrowedBooks = () => {
 
     const handleReturn = async (id, bookName) => {
 
-        console.log(bookName)
+        // console.log(bookName)
 
 
 
