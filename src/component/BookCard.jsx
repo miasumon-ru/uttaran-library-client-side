@@ -1,8 +1,35 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
+import { useState } from "react";
+
+
 
 const BookCard = ({ book }) => {
+
+    const [state, setState] = useState({
+        review: '',
+        rating: 0 // Initial value
+      })
+
+      console.log(state)
+
+      function handleChange(selectedValue) {
+        // 1. Logs the selected rating (1, 2, 3...)
+        console.log(selectedValue)
+    
+        // 2. Do something with or without the value...
+    
+        // 3. Update Rating UI
+        setState((prevState) => ({
+          ...prevState,
+          rating: selectedValue
+        }))
+      }
+
 
     const { image, authorName, bookName, category, ratings, _id } = book
 
@@ -16,11 +43,16 @@ const BookCard = ({ book }) => {
 
                 <p className='text-xl font-medium'> Author :  {authorName} </p>
 
-                <div className='flex flex-row justify-between'>
-                    <p className='text-[16px]'> Category : {category} </p>
+                <div className='flex flex-col '>
+                    <p className='text-[16px] '> Category : {category} </p>
 
-                    <p className='text-[16px]'> Ratings : {ratings} </p>
+                    <p className='text-[16px] flex flex-row gap-2 mt-4'> <span> Ratings</span> :
+                    <Rating halfFillMode="box" style={{ maxWidth: 100 }} onChange={handleChange} readOnly value={ratings}></Rating>
+                   
+                     </p>
                 </div>
+
+                {/* {ratings}  */}
 
 
 

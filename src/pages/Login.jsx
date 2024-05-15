@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import signInPhoto from '../assets/securityPhoto.jpg'
 import { useForm } from "react-hook-form"
 import useAuth from '../hooks/useAuth';
@@ -9,8 +9,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+    const navigate = useNavigate()
 
     const {login, googleLogin} = useAuth()
+
+    
 
     const {
         register,
@@ -37,6 +40,14 @@ const Login = () => {
             console.log(result.user)
 
             toast.success("login is successful")
+
+            setTimeout(()=> {
+
+                navigate('/')
+    
+            },2500)
+
+ 
         })
         .catch(error => {
             console.log(error.message)
@@ -47,6 +58,8 @@ const Login = () => {
 
         // reset the form
         e.target.reset()
+
+      
 
 
 
@@ -61,6 +74,13 @@ const Login = () => {
             console.log(result.user)
 
             toast.success("Login is successful")
+
+            setTimeout(()=> {
+
+                navigate('/')
+
+            },2500)
+
         })
         .catch(error => {
             console.log(error.message)

@@ -3,9 +3,7 @@ import axios from "axios";
 // import { useEffect, useState } from "react";
 import BookCard from "../component/BookCard";
 import useAuth from "../hooks/useAuth";
-import { useState } from "react";
-
-
+// import { useState } from "react";
 
 
 
@@ -49,7 +47,7 @@ const AllBooks = () => {
 
     // display book
 
-    const [displayBooks, setDisplayBooks] = useState(books)
+    // const [displayBooks, setDisplayBooks] = useState(books)
 
 
     const getBooksData = async () => {
@@ -74,21 +72,21 @@ const AllBooks = () => {
     // handle Available Books
 
 
-    const handleAvailableBooks = () => {
+    // const handleAvailableBooks = () => {
 
-        setDisplayBooks(filteredData)
+    //     setDisplayBooks(filteredData)
 
-    }
+    // }
 
-    const handleAvailableBooksWithNot = () => {
-        setDisplayBooks(books)
-    }
+    // const handleAvailableBooksWithNot = () => {
+    //     setDisplayBooks(books)
+    // }
 
 
     return (
         <div>
 
-            <div className="max-w-52 mx-auto">
+            {/* <div className="max-w-52 mx-auto">
 
                 <div className="dropdown ">
                     <div tabIndex={0} role="button" className="btn max-w-52 m-1"> Show Available Books</div>
@@ -97,13 +95,13 @@ const AllBooks = () => {
                         <li onClick={handleAvailableBooksWithNot} className="btn mt-2">With Not Available Books</li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
 
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
                 {
 
-                    displayBooks.map((book, index) => <BookCard book={book} key={index}></BookCard>)
+                    books.map((book, index) => <BookCard book={book} key={index}></BookCard>)
 
                 }
             </div>

@@ -4,8 +4,34 @@ import { useQuery } from "@tanstack/react-query";
 
 import axios from "axios";
 
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
+import { useState } from "react";
+
 
 const SpecificCategories = () => {
+
+    const [state, setState] = useState({
+        review: '',
+        rating: 0 // Initial value
+      })
+
+      console.log(state)
+
+      function handleChange(selectedValue) {
+        // 1. Logs the selected rating (1, 2, 3...)
+        console.log(selectedValue)
+    
+        // 2. Do something with or without the value...
+    
+        // 3. Update Rating UI
+        setState((prevState) => ({
+          ...prevState,
+          rating: selectedValue
+        }))
+      }
+
 
 
     const { category } = useParams()
@@ -47,8 +73,12 @@ const SpecificCategories = () => {
                         <div className='flex flex-row justify-between'>
                             <p className='text-[16px]'> Category : <span className=" p-2 rounded-2xl font-bold text-xl"> {category.category} </span> </p>
 
-                            <p className='text-[16px]'> Ratings : {category.ratings} </p>
+                            <p className='text-[16px] flex flex-row gap-3 items-center'> Ratings :   <Rating halfFillMode="box" style={{ maxWidth: 100 }} onChange={handleChange} readOnly value={category.ratings}></Rating>
+                            
+                             </p>
                         </div>
+
+                        {/* {category.ratings} */}
 
 
 
