@@ -35,6 +35,8 @@ const Login = () => {
         login(email, password)
         .then(result => {
             console.log(result.user)
+
+            toast.success("login is successful")
         })
         .catch(error => {
             console.log(error.message)

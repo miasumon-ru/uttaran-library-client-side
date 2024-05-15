@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import signUpPhoto from "../assets/signUpPhoto.jpg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { FaEye } from "react-icons/fa";
@@ -9,10 +9,13 @@ import useAuth from "../hooks/useAuth";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { signOut, updateProfile } from "firebase/auth";
+import auth from "../firebase/firebase.config";
 
 const Register = () => {
 
     const { createUser } = useAuth()
+    const navigate = useNavigate()
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -47,6 +50,38 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             console.log(result.user)
+
+            // update profile
+
+            updateProfile(auth.currentUser , {
+                displayName : name,
+                photoURL : data.photoURL
+            })
+            .then(()=> {
+                console.log("updated profile")
+            })
+            .catch((error)=> {
+                console.log(error.message)
+            })
+            toast.success("  Successful Registration and Please Login ")
+
+
+            // signOut
+
+            signOut(auth)
+            .then(()=> {
+                console.log("logout successfull")
+            })
+
+            // navigate to the login page 
+
+            setTimeout(() => {
+                navigate('/login')
+            }, 3000)
+
+
+
+
         })
         .catch(error => {
             console.log(error.message)

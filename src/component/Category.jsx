@@ -7,21 +7,27 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
 
-    // const [categories, setCategories] = useState([])
+  
+// [
+//     {
+//         "img": "https://i.postimg.cc/Vk2mbbTQ/category-travel-img-2.jpg",
+//         "category": "Travel"
+//     },
 
-    // useEffect(()=>{
+//     {
+//         "img": "https://i.postimg.cc/TY7RfsJP/catergory-lifestyle-and-hobbies-img-2.jpg",
+//         "category": "Life Style and Hobbies"
+//     },
+//     {
+//         "img": "https://i.postimg.cc/pLTgCX8W/category-business-and-finance.jpg",
+//         "category": "Business and Finance"
+//     },
+//     {
+//         "img": "https://i.postimg.cc/Dy591bSp/category-fiction-img.jpg",
+//         "category": "Fiction"
+//     }
+// ]
 
-    //     fetch('categories.json')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         // console.log(data)
-
-    //         setCategories(data)
-    //     })
-
-    // },[])
-
-    // console.log(categories)
 
     const { data: categories = [], isLoading } = useQuery({
         queryFn: () => getData(),
@@ -31,7 +37,7 @@ const Category = () => {
     console.log(categories)
 
     const getData = async () => {
-        const data = await axios.get('categories.json')
+        const data = await axios.get('https://assignment-eleven-server-iota.vercel.app/categories')
         return data.data
     }
 
@@ -58,20 +64,29 @@ const Category = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 mb-10 gap-4" >
                 {
 
-                    categories.map((category, index) => <Link to={`/specificCategories/${category.category}`} key={index}>
+                    categories.map((category, index) => 
 
-                        <div className="mt-8 border rounded-2xl shadow-md flex flex-col items-center p-5"  >
+                        <div key={index} className="mt-8 border rounded-2xl shadow-md flex flex-col items-center p-5"  >
 
                             <img className="max-w-xs rounded-3xl" src={category.img} alt="" />
 
                             <h2 className="text-3xl font-bold mt-4">  {category.category} </h2>
+
+                            <Link to={`/specificCategories/${category.category}`}> 
+                            
+                            <button className="btn w-full mt-6"> See All </button>
+                            
+                            </Link>
+
+
+                            
 
 
 
                         </div>
 
 
-                    </Link>)
+                     )
 
                 }
             </div>

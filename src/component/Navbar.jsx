@@ -14,10 +14,10 @@ const Navbar = () => {
 
     const navLinks = <>
 
-        <li> <NavLink to={'/'}> Home </NavLink> </li>
-        <li> <NavLink to={'/addBook'}> Add Book </NavLink> </li>
-        <li> <NavLink to={'/allBooks'}> All Books </NavLink> </li>
-        <li> <NavLink to={'/borrowedBooks'}> Borrowed Books </NavLink> </li>
+        <li className="font-semibold"> <NavLink to={'/'}> Home </NavLink> </li>
+        <li className="font-semibold"> <NavLink to={'/addBook'}> Add Book </NavLink> </li>
+        <li className="font-semibold"> <NavLink to={'/allBooks'}> All Books </NavLink> </li>
+        <li className="font-semibold"> <NavLink to={'/borrowedBooks'}> Borrowed Books </NavLink> </li>
 
 
     </>
@@ -49,8 +49,8 @@ const Navbar = () => {
 
 
         if(JSON.parse(localStorage.getItem("theme")) == "dark" ){
-            document.querySelector("body").setAttribute("style" , "color:white")
-            document.querySelector(".swiper").setAttribute("style" , "color:gray")
+            document.querySelector("body").setAttribute("style" , "color:green")
+            
         }
         else{
             document.querySelector("body").setAttribute("style" , "color:black")

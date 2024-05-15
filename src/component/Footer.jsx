@@ -3,7 +3,7 @@ import logo from '../assets/Uttaran.png'
 
 const Footer = () => {
     return (
-        <footer className="footer footer-center p-10 border rounded-xl">
+        <footer className="footer footer-center p-10 border shadow-2xl rounded-xl">
             <aside>
                <img className='w-1/3 rounded-lg' src={logo} alt="" />
                 <p className="font-bold">

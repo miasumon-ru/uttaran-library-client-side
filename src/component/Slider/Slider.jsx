@@ -14,8 +14,20 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
-
-
+// [
+//     {
+//         "img": "https://i.postimg.cc/Hx2dhWY6/Pride-and-Prejudice.jpg"     
+//     },
+//     {
+//         "img": "https://i.postimg.cc/zDyqjNmF/To-Kill-a-Mockingbird.jpg"      
+//     },
+//     {
+//         "img": "https://i.postimg.cc/VLM1xFkS/The-Lord-of-the-Rings.jpg"       
+//     },
+//     {
+//         "img": "https://i.postimg.cc/XYkWJ7F4/The-Catcher-in-the-Rye.jpg"      
+//     }
+// ]
 
 
 
@@ -29,7 +41,7 @@ const Slider = () => {
 
 
      const getSliders = async() => {
-        const data = await axios.get('slides.json')
+        const data = await axios.get('https://assignment-eleven-server-iota.vercel.app/slides')
 
         return data.data
      }

@@ -4,11 +4,43 @@ import formImg from '../assets/form.jpg'
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
+import { useState } from "react";
+
+
 
 
 const AddBook = () => {
 
+    const [state, setState] = useState({
+        review: '',
+        rating: 0 // Initial value
+      })
+
+      console.log(state)
+
+      function handleChange(selectedValue) {
+        // 1. Logs the selected rating (1, 2, 3...)
+        console.log(selectedValue)
+    
+        // 2. Do something with or without the value...
+    
+        // 3. Update Rating UI
+        setState((prevState) => ({
+          ...prevState,
+          rating: selectedValue
+        }))
+      }
+
     const {user} = useAuth()
+
+    const navigate = useNavigate()
 
 
     const {
@@ -18,16 +50,17 @@ const AddBook = () => {
 
     //   handle AddBook 
 
-    const handleAddBook = (data) => {
+    const handleAddBook = (data, e) => {
 
         const image = data.imageURL
         const bookName = data.bookName
         const authorName = data.authorName
         const category = data.category
-        const ratings = data.ratings
+        const ratings = state.rating
         const quantity = parseInt(data.quantity)
         const shortDescription = data.shortDescription
 
+    
 
         const newBook = {
             image,
@@ -40,9 +73,22 @@ const AddBook = () => {
         }
         
 
-        axios.post(`http://localhost:5000/books?email=${user?.email}`, newBook, {withCredentials:true} )
+        axios.post(`https://assignment-eleven-server-iota.vercel.app/books?email=${user?.email}`, newBook, {withCredentials:true} )
         .then(res => {
             console.log(res.data)
+
+            if(res.data.insertedId){
+                toast.success("The book is added successfully")
+
+                e.target.reset()
+
+                setTimeout(()=> {
+
+                    navigate("/allBooks")
+
+                }, 2500)
+            }
+
         })
 
 
@@ -119,10 +165,16 @@ const AddBook = () => {
 
 
                         <div className="form-control w-full">
-                            <label className="label">
+
+                        
+
+                             <label className="label mb-2">
                                 <span className="label-text">Ratings</span>
                             </label>
-                            <input type="number"  {...register("ratings")} placeholder="Ratings" className="input input-bordered" required />
+                            {/* <input type="number"  {...register("ratings")} placeholder="Ratings" className="input input-bordered" required /> */}
+
+                            <Rating style={{ maxWidth: 150 }} onChange={handleChange} value={state.rating}></Rating>
+
                         </div>
 
 
@@ -133,6 +185,10 @@ const AddBook = () => {
                     </div>
 
                 </form>
+
+                <ToastContainer>
+
+                </ToastContainer>
             </div>
         </div>
 

@@ -20,7 +20,7 @@ const SpecificCategories = () => {
     console.log(categories)
 
     const getSpecificCategories = async () => {
-        const data = await axios.get(`http://localhost:5000/specificCategories/${category}`)
+        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/specificCategories/${category}`)
         return data.data
     }
 

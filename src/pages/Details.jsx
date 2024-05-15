@@ -56,7 +56,7 @@ const Details = () => {
 
            
 
-            const {data} = await axios.patch(`http://localhost:5000/borrowedBooks/${id}`, {quantity})
+            const {data} = await axios.patch(`https://assignment-eleven-server-iota.vercel.app/borrowedBooks/${id}`, {quantity})
             
 
             console.log(data)
@@ -79,14 +79,14 @@ const Details = () => {
 
 
     const getBookForDetails = async () => {
-        const data = await axios.get(`http://localhost:5000/books/${id}`)
+        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/books/${id}`)
         return data.data
     }
 
     // for borrowed books
 
     const getBorrowedBooks = async () => {
-        const data = await axios.get(`http://localhost:5000/borrowedBooks/?email=${user?.email}`)
+        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/borrowedBooks/?email=${user?.email}`)
         return data.data
     }
 
@@ -155,7 +155,7 @@ const Details = () => {
         }
 
 
-        axios.post("http://localhost:5000/borrowedBooks", borrowedBooksInfo)
+        axios.post("https://assignment-eleven-server-iota.vercel.app/borrowedBooks", borrowedBooksInfo)
             .then(res => {
                 console.log(res.data)
 

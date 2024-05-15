@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 
@@ -8,10 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import updateImg from '../assets/update.jpg'
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const Update = () => {
+
+    const navigate = useNavigate()
+
+    const queryClient = useQueryClient()
 
     const {
         register,
@@ -20,7 +24,7 @@ const Update = () => {
 
     //   handle submit for update 
 
-    const handleUpdate = (data) => {
+    const handleUpdate = async (data) => {
         console.log(data)
 
         const imageURL = data.imageURL
@@ -42,30 +46,86 @@ const Update = () => {
             id
         }
 
-        axios.put("http://localhost:5000/booksUpdate", updatedBook)
-            .then(res => {
-                if (res.data.modifiedCount > 0) {
-                    toast.success(" Book is updated successfully ")
-                }
-            })
+        console.log(updatedBook)
+
+        // update using tanstack query
+
+        await mutateAsync(updatedBook)
+
+
+
+
+
+        // update using axios
+
+
+        //     axios.put("https://assignment-eleven-server-iota.vercel.app/booksUpdate", updatedBook)
+        //         .then(res => {
+        //             if (res.data.modifiedCount > 0) {
+
+        //                 console.log(res.data)
+        //                 toast.success(" Book is updated successfully ")
+
+        //                 setTimeout(()=> {
+
+        //                     navigate("/allBooks")
+
+        //                 }, 2500)
+        //             }
+        //         })
 
 
     }
+
+
 
 
     const { id } = useParams()
     console.log(id)
 
 
-    const { data: book = {}, isLoading } = useQuery({
+    const { data: book = {}, isLoading, refetch } = useQuery({
         queryFn: () => getUpdateData(),
         queryKey: ["updatedData"]
     })
 
     console.log(book)
 
+    // updating data 
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (updatedBook) => {
+
+            console.log(updatedBook)
+
+            const { data } = await axios.put("https://assignment-eleven-server-iota.vercel.app/booksUpdate", updatedBook)
+
+            console.log(data)
+
+        },
+
+        onSuccess: () => {
+            console.log("data updated")
+
+            // ui refresh
+
+            refetch()
+
+            queryClient.invalidateQueries({queryKey : ["booksData", "customizedData"]})
+
+            toast.success(" Book is updated successfully ")
+
+            setTimeout(()=> {
+
+                navigate("/allBooks")
+
+            }, 2500)
+        }
+    })
+
+
     const getUpdateData = async () => {
-        const data = await axios.get(`http://localhost:5000/books/${id}`)
+        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/books/${id}`)
         return data.data
     }
 
@@ -77,7 +137,7 @@ const Update = () => {
     }
 
 
-    
+
 
 
 
@@ -150,7 +210,7 @@ const Update = () => {
                                 <span className="label-text">Ratings</span>
                             </label>
 
-                         
+
                             <input type="text" defaultValue={book.ratings}  {...register("ratings")} placeholder="Give ratings between 1 to 5" className="input input-bordered" required />
                         </div>
 

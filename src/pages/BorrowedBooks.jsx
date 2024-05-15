@@ -1,6 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -25,9 +28,11 @@ const BorrowedBooks = () => {
 
             console.log("id for delete", id)
 
-            const {data} = await axios.delete(`http://localhost:5000/books/${id}`)
+            const {data} = await axios.delete(`https://assignment-eleven-server-iota.vercel.app/books/${id}`)
 
             console.log(data)
+
+            toast.success("The book is returned successfully")
      
 
         },
@@ -40,7 +45,7 @@ const BorrowedBooks = () => {
     })
 
     const getBorrowedBooks = async () => {
-        const data = await axios.get(`http://localhost:5000/borrowedBooks/?email=${user?.email}`)
+        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/borrowedBooks/?email=${user?.email}`)
         return data.data
     }
 
@@ -61,7 +66,7 @@ const BorrowedBooks = () => {
 
         
 
-         const {data} = await axios.patch(`http://localhost:5000/books/${bookName}`, {message : 'success'})
+         const {data} = await axios.patch(`https://assignment-eleven-server-iota.vercel.app/books/${bookName}`, {message : 'success'})
 
          console.log(data)
 
@@ -104,6 +109,10 @@ const BorrowedBooks = () => {
                     </div>
                 </div>)
             }
+
+            <ToastContainer>
+
+            </ToastContainer>
 
 
         </div>

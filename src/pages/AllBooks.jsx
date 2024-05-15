@@ -7,7 +7,15 @@ import { useState } from "react";
 
 
 
+
+
+// const Rating = require('react-rating');
+
+
+
 const AllBooks = () => {
+
+
 
     const { user } = useAuth()
 
@@ -15,7 +23,7 @@ const AllBooks = () => {
 
     // useEffect(() => {
 
-    //     axios.get('http://localhost:5000/books')
+    //     axios.get('https://assignment-eleven-server-iota.vercel.app/books')
     //         .then(res => {
     //             console.log(res.data)
     //         })
@@ -46,13 +54,13 @@ const AllBooks = () => {
 
     const getBooksData = async () => {
 
-        const data = await axios.get(`http://localhost:5000/books?email=${user?.email}`, { withCredentials: true })
+        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/books?email=${user?.email}`, { withCredentials: true })
         return data.data
         
     }
 
     const getCustomizedData = async () => {
-        const data = await axios.get(`http://localhost:5000/filteredData?email=${user?.email}`, { withCredentials: true })
+        const data = await axios.get(`https://assignment-eleven-server-iota.vercel.app/filteredData?email=${user?.email}`, { withCredentials: true })
         return data.data
     }
 
@@ -90,8 +98,6 @@ const AllBooks = () => {
                     </ul>
                 </div>
             </div>
-
-
 
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
