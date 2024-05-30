@@ -91,7 +91,7 @@ const AllBooks = () => {
     // handle Search 
     const handleSearch = event => {
 
-        setSearch(event.target.value)
+        setSearch(event.target.value.toLowerCase())
 
     }
 
@@ -104,7 +104,7 @@ const AllBooks = () => {
 
             <div>
                 <div className="form-control">
-                    <input onChange={handleSearch} type="text" placeholder="Search by Book Name" className="input input-bordered w-24 md:w-auto" />
+                    <input onChange={handleSearch} type="text" placeholder="Search by Book Names" className="input input-bordered w-24 md:w-auto" />
                 </div>
             </div>
 
