@@ -4,6 +4,7 @@ import axios from "axios";
 import BookCard from "../component/BookCard";
 import useAuth from "../hooks/useAuth";
 import { Helmet } from "react-helmet";
+import { useState } from "react";
 // import { useState } from "react";
 
 
@@ -13,6 +14,9 @@ import { Helmet } from "react-helmet";
 
 
 const AllBooks = () => {
+
+
+    const [search, setSearch] = useState('')
 
 
 
@@ -84,8 +88,28 @@ const AllBooks = () => {
     // }
 
 
+    // handle Search 
+    const handleSearch = event => {
+
+        setSearch(event.target.value)
+
+    }
+
+    console.log(search)
+
+
     return (
         <div>
+
+
+            <div>
+                <div className="form-control">
+                    <input onChange={handleSearch} type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                </div>
+            </div>
+
+
+
 
             {/* <div className="max-w-52 mx-auto">
 
@@ -110,7 +134,9 @@ const AllBooks = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
                 {
 
-                    books.map((book, index) => <BookCard book={book} key={index}></BookCard>)
+                    books.filter((book)=> {
+                        return search.toLowerCase() == '' ? book : book.bookName.toLowerCase().includes(search) 
+                    }).map((book, index) => <BookCard book={book} key={index}></BookCard>)
 
                 }
             </div>
