@@ -17,7 +17,7 @@ live link : https://assignment-eleven-client-side.web.app/
 
 
 ## Features
-- assignment_category_0008
+
 - axios and tanstack query is used to fetch the data
 - jwt webtoken is used to secure api
 - Dark and Night mode functionality
@@ -29,6 +29,15 @@ live link : https://assignment-eleven-client-side.web.app/
 - Firebase is  used to create user and login with email and password and therefore login with Google and Github
 
 
+## Technologies I have used –
+
+-   React 
+-   MongoDB
+-   Express 
+-   Node js
+-   Tailwind Css
+-    Firebase for authentication
+-   DaisyUI , a component library
 
 
 ## Npm Packages
